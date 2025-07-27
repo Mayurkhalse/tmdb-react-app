@@ -9,6 +9,9 @@ function Movies({handleAddToWatchList ,handleRemoveToWatchList , watchlist}) {
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
 
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+
   const handlePrev =()=>{
     if(pageNo == 1){
       setPageNo(1)
@@ -25,7 +28,7 @@ setPageNo(pageNo-1);
     useEffect(() => {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=ee24ce8ae5b422e235fd5c71450b8d6c&language=en-US&page=${pageNo}`
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNo}`
         )
         .then(function (res) {
           setMovies(res.data.results);
